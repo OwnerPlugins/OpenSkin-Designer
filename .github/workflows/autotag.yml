@@ -3,8 +3,8 @@ name: Create Tag and Release on Version Change
 on:
   push:
     paths:
-      - OpenSkin-Designer/updates/versione.txt
-      - updates/versione.txt
+      - OpenSkin-Designer/updates/version.txt
+      - updates/version.txt
     branches:
       - main
   workflow_dispatch:
@@ -26,16 +26,16 @@ jobs:
         run: |
           # Cerca il file in più posizioni
           VERSION_FILE=""
-          if [ -f "OpenSkin-Designer/updates/versione.txt" ]; then
-            VERSION_FILE="OpenSkin-Designer/updates/versione.txt"
-          elif [ -f "updates/versione.txt" ]; then
-            VERSION_FILE="updates/versione.txt"
+          if [ -f "OpenSkin-Designer/updates/version.txt" ]; then
+            VERSION_FILE="OpenSkin-Designer/updates/version.txt"
+          elif [ -f "updates/version.txt" ]; then
+            VERSION_FILE="updates/version.txt"
           else
-            VERSION_FILE=$(find . -name "versione.txt" | head -1)
+            VERSION_FILE=$(find . -name "version.txt" | head -1)
           fi
           
           if [ -z "$VERSION_FILE" ]; then
-            echo "ERROR: versione.txt not found!"
+            echo "ERROR: version.txt not found!"
             exit 1
           fi
           
