@@ -1,6 +1,6 @@
 OpenSkin Designer
 =================
-![GitHub release](https://img.shields.io/badge/release-v5.1.0.0-blue)
+![GitHub release](https://img.shields.io/badge/release-v5.1.0.2-blue)
 [![.NET](https://img.shields.io/badge/.NET-10.0-purple)](https://dotnet.microsoft.com/)
 [![Windows Forms](https://img.shields.io/badge/UI-Windows%20Forms-0078D4)](https://github.com/dotnet/winforms)
 [![C#](https://img.shields.io/badge/Language-C%23-239120)](https://docs.microsoft.com/en-us/dotnet/csharp/)
@@ -118,6 +118,157 @@ Source/
 
 ### Changelog
 
+## Version 5.1.0.2 by Lululla – 2026-07-06
+
+### Added
+
+- **New Skin:**
+  - New `File → New` command with resolution selection dialog to create a new skin from scratch
+  - Includes default colors, fonts, windowstyle, and a blank screen
+  - Available in menu and toolbar (New button)
+
+- **Label enhancements:**
+  - `shadowColor` and `shadowOffset` attributes for text shadow rendering with full HEX color support (`#AARRGGBB`)
+  - `ellipsis`, `truncate`, and `lineHeight` attributes for advanced text control
+  - `wrap="ellipsis"` support for RT_ELLIPSIS behavior (text truncated with `...`)
+  - `fontScale` attribute with `size;N` (font size override) and `width;N` (horizontal compression) support, aligning with OpenATV `skin.py`
+  - `setFontScale()` method for dynamic font scaling on labels
+  - `pointWidth` parameter for additional horizontal compression of text characters
+
+- **Listbox enhancements:**
+  - `separatorLineColor` and `separatorLineSize` attributes for drawing lines between list items
+  - `selectionZoom` and `selectionZoomSize` attributes for item scaling and zoom behavior
+  - `entryFontScale` attribute with `size;N` (font size override) and `width;N` (horizontal compression) support for Listbox font scaling
+  - `rtScroll` flag (value 1024) for multi-content scrolling support with mouse wheel interaction and scrollbar
+
+- **Slider enhancements:**
+  - `sliderPixmap` attribute for custom slider thumb images
+
+- **WindowStyle designer:**
+  - Fixed border image buttons (TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight) with proper file selection dialogs
+  - Added `...` text to border buttons to indicate they are clickable
+  - `entryFontScale` support for configList in windowstyle, aligning with OpenATV `skin.py`
+
+- **Include file management:**
+  - View and edit include file content directly from the treeview (tab Code now shows include file content)
+  - Save changes directly to the include file when using the Sync button
+  - Context menu with **Create Include from selected screens** to move selected screens to a separate include file
+  - **Expand all includes** context menu option and automatic expansion of include nodes
+  - **Create New Include File** in Element menu and toolbar with `addInclude` icon
+
+- **Toolbar:**
+  - Added **Add Include** button for quick creation of include files
+  - Added **New** button for quick creation of new skins (File → New)
+  - Added **Exit** button at the start of the toolbar for quick application exit
+
+- **Font & Color enhancements:**
+  - User-selectable **fallback font** via Preferences (Settings → Preferences → Fallback font)
+  - System font fallback (Arial) when skin fonts fail to load, ensuring text is always visible
+  - Fixed HEX color parser to correctly handle 6-digit `#RRGGBB` colors (now properly sets alpha to 255)
+  - Fixed alpha channel inversion bug in `sColor` constructor that caused colors with alpha 255 to become transparent
+  - Added fallback for named colors (`yellow`, `red`, `green`, etc.) when not defined in skin colors table
+
+- **Preferences redesign:**
+  - Completely redesigned Preferences form with **Visual Studio designer support** (`fPreferences.Designer.cs`)
+  - Added **fallback font** combo box populated from the `fonts/` folder
+  - Reorganized checkboxes into a **2-column layout** for a more compact form
+  - Added **AutoScroll** to ensure all controls are accessible on smaller screens
+  - Reduced form height by 30% while maintaining full functionality
+
+- **Menu improvements:**
+  - Template menu items are now disabled until a skin is opened (enabled on open, disabled on close)
+  - Sort and Units menu items are now disabled until a skin is opened (enabled on open, disabled on close)
+
+- **Premium Features:**
+  - **Automatic Updates** – checks for new versions and downloads updates automatically
+
+### Improved
+
+- **Save & Cleanup:**
+  - Fixed double `.xml.xml` extension bug
+  - Removed automatic saving of duplicate `skin_*.xml` include files
+  - Added automatic cleanup of backup files (`skin_*.xml`) on application close to keep skin folders clean
+  - Fixed save path double path issue (absolute paths now handled correctly)
+
+- **Font loading:**
+  - Fixed double path bug causing `fonts\\D:\\...` errors when loading fonts from absolute paths
+  - `MapFontPath` now extracts file names from absolute paths (`/usr/share/fonts/...`) and searches locally in the `fonts/` folder
+  - Added support for font file name variations (case, underscores, dashes) for better compatibility with different skin sources
+
+- **Import Screen:**
+  - Now imports **ALL screens** from the selected file, not just the first one
+  - Handles both single-screen files and files with multiple screens
+
+- **Include handling:**
+  - Parser now continues processing even when an included file is not found (skips missing includes instead of stopping)
+  - This prevents screen loss when a referenced include file is missing
+
+- **Resolution handling:**
+  - Automatically creates `output`/`resolution` nodes when changing skin resolution if they don't exist in the XML
+
+- **Code organization:**
+  - Centralized menu/toolbar enable/disable logic into `EnableAllMenusAndToolbars()` and `DisableAllMenusAndToolbars()`
+  - Eliminated code duplication across `open()`, `close()`, and `CreateNewSkin()`
+  - `MyGlobaleVariables` moved to `OpenSkinDesigner.Structures` namespace for better organization
+
+- **Include resolver:**
+  - Now handles nested `<include>` files with support for `filename`, `file`, `src`, `source`, and `href` attributes
+  - Resolves absolute paths `/usr/share/enigma2/...` to relative paths
+
+- **Full compatibility with OpenATV `skin.py` features:**
+  - `shadowColor`, `shadowOffset`
+  - `ellipsis`, `truncate`, `lineHeight`
+  - `fontScale` (`size;N` / `width;N`)
+  - `wrap='ellipsis'`
+  - `separatorLineColor`, `separatorLineSize`
+  - `sliderPixmap`
+  - `entryFontScale`
+  - `RT_SCROLL`
+
+### Fixed
+
+- `NullReferenceException` in `sGraphicScreen` when opening WindowStyle designer
+- `DirectoryNotFoundException` when skins folder is missing (added directory creation fallback)
+- Color parser now correctly handles 6-digit `#RRGGBB` colors
+- Alpha channel inversion bug in `sColor` constructor
+- Double `.xml.xml` extension bug in save system
+- Duplicate `skin_*.xml` include files no longer created
+- `foregroundColor="yellow"` and other named colors now work without explicit definition in skin
+- `NullReferenceException` in `cDataBaseResolution.setResolution()` when resolution node was missing
+- Save path now correctly handles absolute file paths (no more double path concatenation)
+- `ArgumentOutOfRangeException` in Preferences by ensuring comboboxes are populated before setting `SelectedIndex`
+- Designer errors in `fPreferences` (missing `using`, `for` loops, uninitialized event handlers)
+- `cmbFallbackFont_SelectedIndexChanged` event handler error (removed unused event)
+
+### Translation Files (.lng)
+
+- Translation files use the format `Key:: Value` where:
+  - `Key` is the English text (case-sensitive)
+  - `Value` is the translated text
+  - Separator is `::` (double colon)
+
+### Notes
+
+- **Preferences designer:** The Preferences form now has full Visual Studio designer support (`fPreferences.Designer.cs`). Do not modify the UI code in `fPreferences.cs`.
+- **Fallback font:** If you experience font loading issues, go to `Settings → Preferences` and select a fallback font from the list. The combo box is automatically populated from the `fonts/` folder.
+- **Exit button:** The toolbar now includes an **Exit** button at the beginning (before "New") for quick application exit.
+- **Font paths:** Absolute font paths (`/usr/share/fonts/...`) are now normalized to file names and searched in the local `fonts/` folder. If the font is not found, the fallback font is used.
+
+---
+
+## 🔐 Premium License
+
+Some features require a premium license:
+- **Telnet Commands**
+- **Import/Export Skin** from/to Enigma2
+- **Skin Diagnostics** (advanced analysis)
+- **Automatic Updates** (check and download new versions)
+
+Activate via `Tools → License`.  
+Contact **Lululla** for activation.
+
+---
+
 ### Version 5.1.0.0 by Lululla – 2026-06-22
 
 **Added:**
@@ -154,7 +305,6 @@ Source/
 - **Complete Help section**
   -(`fHelp`) with all keyboard shortcuts, premium features, and support links – now includes application logo.
 
-
 **Improved:**
 - Skin parser now resolves nested includes (supports `filename`, `file`, `src`, `source`, `href`)
 - Better error handling for missing include files
@@ -173,16 +323,6 @@ Source/
 - Premium menu items not updating after activation
 - License menu items now update correctly after activation.
 - Language selection and UI translations are more reliable.
-
-## 🔐 Premium License
-
-Some features require a premium license:
-- **Telnet Commands**
-- **Import/Export Skin** from/to Enigma2
-- **Skin Diagnostics** (advanced analysis)
-
-Activate via `Tools → License`.  
-Contact **Lululla** at ekekaz@gmail.com for activation.
 
 
 ### MOD v5.0.0.7 by Lululla
