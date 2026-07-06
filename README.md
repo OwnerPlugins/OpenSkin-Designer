@@ -1,7 +1,7 @@
 <h1 align="center">OpenSkin Designer</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/release-v5.1.0.2-blue" alt="Release">
+  <img src="https://img.shields.io/badge/release-v5.1.0.3-blue" alt="Release">
   <a href="https://dotnet.microsoft.com/">
     <img src="https://img.shields.io/badge/.NET-10.0-purple" alt=".NET 10">
   </a>
@@ -136,6 +136,19 @@ Source/
 ```
 
 ### Changelog
+
+### v5.1.0.3 by Lululla
+
+**Font loading & path resolution improvements**
+
+- **Font loading revamped**  
+  Fonts are now mapped automatically by filename, eliminating "Font not found" popups and fallback errors. Aliases are created on the fly so any reference to a font file (e.g. `lcd.ttf`) resolves correctly, even if the skin uses the filename instead of the logical name.
+
+- **Path normalization fixed**  
+  `getPath()` now checks the skin folder first, preventing double path concatenation and duplicate directory segments. This ensures all resources (images, fonts, includes) are found reliably, reducing spurious `FileNotFoundException` noise in logs.
+
+- **Cleaner debug logs**  
+  All font and path lookups now log detailed search steps, making it easier to diagnose missing resources without intrusive message boxes.
 
 ## Version 5.1.0.2 by Lululla – 2026-07-06
 
