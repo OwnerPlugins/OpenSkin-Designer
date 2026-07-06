@@ -3,7 +3,7 @@ name: Create Tag and Release on Version Change
 on:
   push:
     paths:
-      - Source/e2skinner2/Properties/AssemblyInfo.cs
+      - updates/versione.txt
     branches:
       - main
   workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
       - name: Read version from file
         id: get_version
         run: |
-          VERSION=$(grep -oP '(?<=AssemblyVersion\(")[^"]+' Source/e2skinner2/Properties/AssemblyInfo.cs)
+          VERSION=$(cat updates/versione.txt | tr -d '\r' | tr -d '\n')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Extracted version: $VERSION"
 
