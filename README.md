@@ -1,6 +1,3 @@
-OpenSkin Designer
-=================
-
 <h1 align="center">OpenSkin Designer</h1>
 
 <p align="center">
