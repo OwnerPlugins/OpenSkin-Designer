@@ -1,7 +1,7 @@
 <h1 align="center">OpenSkin Designer</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/release-v5.1.0.3-blue" alt="Release">
+  <img src="https://img.shields.io/badge/release-v5.1.0.4-blue" alt="Release">
   <a href="https://dotnet.microsoft.com/">
     <img src="https://img.shields.io/badge/.NET-10.0-purple" alt=".NET 10">
   </a>
@@ -105,37 +105,75 @@ It includes a couple of new features i.e.:
   </tr>
 </table>
 
-### Structure
-```
-Source/
-├── OpenSkinDesigner.sln
-├── e2skinner2/
-│   ├── Frames/
-│   ├── Logic/
-│   ├── Structures/
-│   ├── Properties/
-│   ├── Resources/
-│   ├── Scintilla/
-│   ├── elements/
-│   ├── fonts/
-│   ├── languages/
-│   ├── skins/
-│   ├── templates/
-│   ├── Telnet/
-│   ├── xml/
-│   ├── app.config
-│   ├── e2skinner2_TemporaryKey.pfx
-│   ├── Logger.cs
-│   ├── OpenSkinDesigner.csproj
-│   ├── OpenSkinDesigner.ico
-│   ├── PerfCenterCpl.ico
-│   ├── Plattform.cs
-│   ├── Program.cs
-│   └── fOpen.resx
-└── (optional: OpenSkinDesigner.userprefs, *.suo – ignore for source distribution)
-```
-
 ### Changelog
+
+## Version 5.1.0.4 by Lululla – 2026-07-11
+
+### Added
+
+- **Skin Converter** – New dialog accessible from `Tools → Convert Skin...`
+  - Convert skin between HD (1280x720), FHD (1920x1080), WQHD (2560x1440), UHD (3840x2160)
+  - **Categories system** – attributes organized in categories (Fonts, Borders, Corner Radius, Gradients, etc.)
+  - **Category checkbox** – check/uncheck a category to enable/disable ALL rules inside it
+  - **Add/Edit/Remove Category** – create custom categories to organize your own rules
+  - **Add/Edit/Remove Rule** – add custom rules to any category (Name, XML Attribute, Scale Mode)
+  - **Double-click** – edit any rule by double-clicking it
+  - **File list preview** – shows ALL XML files with checkboxes to select which ones to convert
+  - **Async conversion** – UI no longer blocks during conversion
+  - **Progress display** – shows current step, file name, and progress count
+  - **Cancellation support** – click "Cancel" to stop conversion at any time
+  - **Image rescaling** – with HighQualityBicubic interpolation
+  - **Automatic backup** – original skin preserved, new skin saved in `SkinName_Resolution` folder
+  - **Duplicate folder protection** – auto-increments folder name if already exists
+  - **Full translations** – all dialogs and messages fully translatable
+
+- **Open other XML from same folder** – New `File → Open other XML from same folder...` command
+  - Open any XML skin file located in the same directory as the currently open skin
+  - Useful for switching between multiple skins in the same folder (e.g., `MetrixHD/skin_alt.xml`)
+
+- **Grid size setting** – Added to `Settings → Preferences`
+  - Grid size is now persistent across sessions (saved in `settings.json`)
+  - Press `G` key to cycle through grid sizes: `0, 5, 10, 20, 50` pixels
+  - Grid status shown in the status bar (e.g., `Grid: 10 px` or `Grid: Off`)
+
+### Fixed
+
+- **Skin Converter**
+  - Infinite folder recursion during skin copy (`_HD/_HD/_HD` nesting) – fixed
+  - Include files not being converted – all XML files with convertible attributes are now processed
+  - Colors corruption – using `XmlDocument` instead of raw Regex; only specific attributes are modified
+  - UI freeze – conversion runs asynchronously with progress updates
+  - Default skin opening after conversion – now opens the converted skin correctly
+  - `ElementList` null error – proper file path resolution before conversion
+  - License check – now only shows warning without closing the application
+  - Tools menu items – disabled until a skin is opened
+
+- **File counting during import/export**
+  - `CountFiles` function now correctly counts each file only once (no more double counting)
+  - Progress bar shows the correct total file count
+  - Added exception handling for unauthorized access and missing directories
+
+- **Skin Information**
+  - Now shows all XML files in the skin folder, not just referenced includes
+
+- **UI**
+  - Crosshair button disabled by default until a skin is opened
+  - Convert Skin menu item disabled until a skin is opened
+  - Tools menu items (Telnet, Import, Export, Skin Information) disabled until a skin is opened
+
+## 🔐 Premium License
+
+Some features require a premium license:
+- **Telnet Commands** – Execute commands on Enigma2 receiver
+- **Import/Export Skin** – Copy skin from/to Enigma2 (UNC)
+- **Skin Diagnostics** – Advanced analysis (premium only)
+- **Skin Converter** – Convert HD/FHD/WQHD/UHD
+- **Automatic Updates** – Check and download new versions
+
+Activate via `Tools → License`.  
+Contact **Lululla** for activation.
+
+---
 
 ### v5.1.0.3 by Lululla
 
@@ -149,6 +187,8 @@ Source/
 
 - **Cleaner debug logs**  
   All font and path lookups now log detailed search steps, making it easier to diagnose missing resources without intrusive message boxes.
+
+---
 
 ## Version 5.1.0.2 by Lululla – 2026-07-06
 
@@ -285,19 +325,6 @@ Source/
 - **Fallback font:** If you experience font loading issues, go to `Settings → Preferences` and select a fallback font from the list. The combo box is automatically populated from the `fonts/` folder.
 - **Exit button:** The toolbar now includes an **Exit** button at the beginning (before "New") for quick application exit.
 - **Font paths:** Absolute font paths (`/usr/share/fonts/...`) are now normalized to file names and searched in the local `fonts/` folder. If the font is not found, the fallback font is used.
-
----
-
-## 🔐 Premium License
-
-Some features require a premium license:
-- **Telnet Commands**
-- **Import/Export Skin** from/to Enigma2
-- **Skin Diagnostics** (advanced analysis)
-- **Automatic Updates** (check and download new versions)
-
-Activate via `Tools → License`.  
-Contact **Lululla** for activation.
 
 ---
 
