@@ -1,7 +1,7 @@
 <h1 align="center">OpenSkin Designer</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/release-v5.1.0.4-blue" alt="Release">
+  <img src="https://img.shields.io/badge/release-v5.1.0.5-blue" alt="Release">
   <a href="https://dotnet.microsoft.com/">
     <img src="https://img.shields.io/badge/.NET-10.0-purple" alt=".NET 10">
   </a>
@@ -107,6 +107,46 @@ It includes a couple of new features i.e.:
 
 ### Changelog
 
+## Version 5.1.0.5 by Lululla – 2026-07-12
+
+### Added
+- **Skin naming on creation** – user can now choose the skin name when creating a new skin via `File → New`, instead of using a temporary folder
+- **Skin naming on conversion** – user can now choose the destination name when converting a skin via `Tools → Convert Skin...`, instead of automatic naming
+- **New document button** – added "New" button in fOpen dialog to create a new skin directly from the open dialog.
+- **Root toggle fix** – removed duplicate btnToggleRoot_Click method, kept version with "Show Root"/"Hide Root" labels.
+- **Rulers toggle fix** – added missing btnToggleRulers_Click event handler.
+- **UHD zoom fix** – extended zoom range from 0.4x–2.0x to 0.1x–5.0x for proper UHD display.
+- **Ruler update** – rulers now properly refresh after zoom and resolution changes.
+- **Root toggle button** – added btnToggleRoot toolbar button with show/hide functionality for the skin tree panel.
+
+### Fixed
+- **Save path** – removed `Path.IsPathRooted` check, always uses `Path.Combine(folder, fileName)` to prevent double path duplication (`D:\temp\Temp\D:\temp\Temp\...`)
+- **Converter directory** – added `Directory.CreateDirectory(newSkinFolder)` before copy operations to prevent `DirectoryNotFoundException`
+- **New skin persistence** – new skins are now saved permanently in `./skins/{user_choice}/skin.xml` instead of `%TEMP%\OpenSkinDesigner\`
+- **Converter source path** – removed automatic fallback to `originalSkinPath` to prevent attempts to read from non-existent directories
+- **New screen recursion** – fixed infinite screen creation when "new screen" is clicked on a screen node (screen is now added as sibling, not child)
+- **Include handling** – when an include node is selected, new screen is correctly added as a child inside the include file
+- **Crosshair fix** – reset transform after designer paint to draw grid and crosshair in correct client coordinates.
+- **Grid fix** – grid now aligns with crosshair and scales properly with zoom.
+- **Zoom fit calculation** – added CalculateFitZoom() to compute correct "fit to view" zoom for any resolution (HD, FHD, WQHD, UHD)
+    Zoom calculation refactor – fixed variable conflicts by using unique names (openRes, fromFileRes, screenRes) across all methods.
+- **Scrollbar fix** – zoom now properly fits the screen in the panel, eliminating unnecessary scrollbars at zoom 0 for FHD/WQHD/UHD.
+- **Delete screen** – fixed deletion of screens (including empty screens) that caused freezes and recursion; manual node removal from ElementList without rebuilding tree, preventing path exceptions
+- **New screen recursion** – blocked creation of screen inside another screen with error message and button disable when on a screen node
+
+## 🔐 Premium License
+Some features require a premium license:
+- **Telnet Commands** – Execute commands on Enigma2 receiver
+- **Import/Export Skin** – Copy skin from/to Enigma2 (UNC)
+- **Skin Diagnostics** – Advanced analysis (premium only)
+- **Skin Converter** – Convert HD/FHD/WQHD/UHD
+- **Automatic Updates** – Check and download new versions
+
+Activate via `Tools → License`.  
+Contact **Lululla** for activation.
+
+---
+
 ## Version 5.1.0.4 by Lululla – 2026-07-11
 
 ### Added
@@ -160,18 +200,6 @@ It includes a couple of new features i.e.:
   - Crosshair button disabled by default until a skin is opened
   - Convert Skin menu item disabled until a skin is opened
   - Tools menu items (Telnet, Import, Export, Skin Information) disabled until a skin is opened
-
-## 🔐 Premium License
-
-Some features require a premium license:
-- **Telnet Commands** – Execute commands on Enigma2 receiver
-- **Import/Export Skin** – Copy skin from/to Enigma2 (UNC)
-- **Skin Diagnostics** – Advanced analysis (premium only)
-- **Skin Converter** – Convert HD/FHD/WQHD/UHD
-- **Automatic Updates** – Check and download new versions
-
-Activate via `Tools → License`.  
-Contact **Lululla** for activation.
 
 ---
 
