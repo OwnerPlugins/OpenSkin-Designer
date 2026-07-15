@@ -1,7 +1,7 @@
 <h1 align="center">OpenSkin Designer</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/release-v5.1.0.5-blue" alt="Release">
+  <img src="https://img.shields.io/badge/release-v5.1.0.6-blue" alt="Release">
   <a href="https://dotnet.microsoft.com/">
     <img src="https://img.shields.io/badge/.NET-10.0-purple" alt=".NET 10">
   </a>
@@ -107,6 +107,27 @@ It includes a couple of new features i.e.:
 
 ### Changelog
 
+## Version 5.1.0.6 by Lululla – 2026-07-12
+
+### Fixed
+- **Font path fix** – normalized font paths to remove duplicate "fonts" folder and double slashes.
+- **Path normalization** – added check in MapFontPath() and getPath() to clean malformed paths.
+- **Skin Converter** – disabled non-physical attributes by default: zPosition, index, scrollbarMode, scrollbarScroll, animationMode, animationPaused, split.
+- **User experience** – users can still enable them manually if needed, but they won't be applied unintentionally during conversion.
+
+## 🔐 Premium License
+Some features require a premium license:
+- **Telnet Commands** – Execute commands on Enigma2 receiver
+- **Import/Export Skin** – Copy skin from/to Enigma2 (UNC)
+- **Skin Diagnostics** – Advanced analysis (premium only)
+- **Skin Converter** – Convert HD/FHD/WQHD/UHD
+- **Automatic Updates** – Check and download new versions
+
+Activate via `Tools → License`.  
+Contact **Lululla** for activation.
+
+---
+
 ## Version 5.1.0.5 by Lululla – 2026-07-12
 
 ### Added
@@ -133,17 +154,6 @@ It includes a couple of new features i.e.:
 - **Scrollbar fix** – zoom now properly fits the screen in the panel, eliminating unnecessary scrollbars at zoom 0 for FHD/WQHD/UHD.
 - **Delete screen** – fixed deletion of screens (including empty screens) that caused freezes and recursion; manual node removal from ElementList without rebuilding tree, preventing path exceptions
 - **New screen recursion** – blocked creation of screen inside another screen with error message and button disable when on a screen node
-
-## 🔐 Premium License
-Some features require a premium license:
-- **Telnet Commands** – Execute commands on Enigma2 receiver
-- **Import/Export Skin** – Copy skin from/to Enigma2 (UNC)
-- **Skin Diagnostics** – Advanced analysis (premium only)
-- **Skin Converter** – Convert HD/FHD/WQHD/UHD
-- **Automatic Updates** – Check and download new versions
-
-Activate via `Tools → License`.  
-Contact **Lululla** for activation.
 
 ---
 
