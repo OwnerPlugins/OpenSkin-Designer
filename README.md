@@ -107,13 +107,14 @@ It includes a couple of new features i.e.:
 
 ### Changelog
 
-## Version 5.1.0.6 by Lululla – 2026-07-12
+## Version 5.1.0.7 by Lululla – 2026-07-16
 
 ### Fixed
-- **Font path fix** – normalized font paths to remove duplicate "fonts" folder and double slashes.
-- **Path normalization** – added check in MapFontPath() and getPath() to clean malformed paths.
-- **Skin Converter** – disabled non-physical attributes by default: zPosition, index, scrollbarMode, scrollbarScroll, animationMode, animationPaused, split.
-- **User experience** – users can still enable them manually if needed, but they won't be applied unintentionally during conversion.
+- **Fix: Color alpha fix** – RGB colors (#rrggbb) now correctly default to opaque (#ffrrggbb) instead of becoming transparent (#00rrggbb).
+- **Fix: Color parser** – added missing alpha handling in sColor constructor for 6-digit hex strings." + Environment.NewLine +
+- **Font scaling fix** – font conversion rules are now disabled by default to prevent double-scaling when converting skins (Enigma2 already handles font scaling). Users can enable them manually if needed.
+- **Font path normalization** – absolute font paths are now converted to relative paths (fonts/filename.ttf) when saving the skin.
+- **Duplicate removal** – duplicate font entries with the same name are skipped during sync to avoid conflicts.
 
 ## 🔐 Premium License
 Some features require a premium license:
@@ -125,6 +126,16 @@ Some features require a premium license:
 
 Activate via `Tools → License`.  
 Contact **Lululla** for activation.
+
+---
+
+## Version 5.1.0.6 by Lululla – 2026-07-14
+
+### Fixed
+- **Font path fix** – normalized font paths to remove duplicate "fonts" folder and double slashes.
+- **Path normalization** – added check in MapFontPath() and getPath() to clean malformed paths.
+- **Skin Converter** – disabled non-physical attributes by default: zPosition, index, scrollbarMode, scrollbarScroll, animationMode, animationPaused, split.
+- **User experience** – users can still enable them manually if needed, but they won't be applied unintentionally during conversion.
 
 ---
 
