@@ -1,7 +1,7 @@
 <h1 align="center">OpenSkin Designer</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/release-v5.1.0.7-blue" alt="Release">
+  <img src="https://img.shields.io/badge/release-v5.1.0.8-blue" alt="Release">
   <a href="https://dotnet.microsoft.com/">
     <img src="https://img.shields.io/badge/.NET-10.0-purple" alt=".NET 10">
   </a>
@@ -107,14 +107,74 @@ It includes a couple of new features i.e.:
 
 ### Changelog
 
-## Version 5.1.0.7 by Lululla – 2026-07-16
+## CHANGELOG – OpenSkinDesigner (v5.1.0.8)
 
-### Fixed
-- **Fix: Color alpha fix** – RGB colors (#rrggbb) now correctly default to opaque (#ffrrggbb) instead of becoming transparent (#00rrggbb).
-- **Fix: Color parser** – added missing alpha handling in sColor constructor for 6-digit hex strings." + Environment.NewLine +
-- **Font scaling fix** – font conversion rules are now disabled by default to prevent double-scaling when converting skins (Enigma2 already handles font scaling). Users can enable them manually if needed.
-- **Font path normalization** – absolute font paths are now converted to relative paths (fonts/filename.ttf) when saving the skin.
-- **Duplicate removal** – duplicate font entries with the same name are skipped during sync to avoid conflicts.
+### FIXED: Font Manager – Duplicate Display & Saving Issues
+
+**Problem:**
+- Fonts appeared duplicated in the Font Manager UI (both real fonts and file-name aliases)
+- Removing a font from the list did NOT remove it from the database
+- `Reload` button reset unsaved changes instead of refreshing the UI
+- Modifications to `<fonts>` node in the Code tab were not reflected in Font Manager
+- Paths were saved with double slashes (`fonts//Roboto-Regular.ttf`)
+- Fonts from `<include>` files were not loaded when main `<fonts/>` node was empty
+
+**Solution:**
+
+**1. Added `IsAutoAlias` property to `sFont`**
+- `IsAutoAlias` distinguishes file-name aliases (created by `AddFileAlias()`) from real fonts and user-defined aliases
+- Used for filtering in UI and during save operations
+
+**2. Added `Show Aliases` checkbox to Font Manager**
+- Default OFF → hides file-name aliases (shows only real fonts)
+- ON → shows all fonts + aliases (debug mode)
+
+**3. Fixed `Remove` button**
+- Now removes the font from **both** the ListView and the database
+- Prevents removed fonts from reappearing after refresh
+
+**4. Fixed `Reload` button**
+- Now refreshes the UI from database (does NOT reload from disk)
+- Preserves pending changes
+
+**5. Fixed `initFonts()` in `cDataBase`**
+- Merges `<fonts>` nodes from main skin AND all included files
+- Fixes issue where fonts from includes were not loaded when main `<fonts/>` was empty
+
+**6. Fixed `syncFonts()` in `cDataBase`**
+- Uses `OriginalPath` for saving (preserves relative paths)
+- Skips `IsAutoAlias` fonts during save (prevents duplicate re-writing)
+- Normalizes paths (removes double slashes)
+
+**7. Fixed `RefreshFontList()` in `fFonts`**
+- Filters out `IsAutoAlias` fonts when checkbox is OFF
+- Shows all fonts when checkbox is ON
+
+**8. Fixed `RemoveDuplicateFonts()` in `fFonts`**
+- Now acts on the database, not just the ListView
+- Removes duplicate font entries before saving
+
+---
+
+### What Works Now:
+
+1. **Font Manager UI** shows only real fonts (clean, no duplicates)
+2. **Checkbox "Show Aliases"** toggles display of auto-aliases for debugging
+3. **Remove** permanently deletes font from database (not just UI)
+4. **Reload** refreshes UI without losing pending changes
+5. **Saving** writes clean, duplicate-free XML with normalized paths
+6. **Includes** are properly merged with main `<fonts>` node
+7. **Code tab → Designer tab** changes are applied automatically
+
+---
+
+## Summary for Users:
+
+- Open Font Manager → see only your defined fonts (no duplicates)
+- Use **Show Aliases** checkbox to see debug info
+- Add/Remove/Change fonts → works as expected
+- Close window → changes are saved automatically
+
 
 ## 🔐 Premium License
 Some features require a premium license:
@@ -126,6 +186,17 @@ Some features require a premium license:
 
 Activate via `Tools → License`.  
 Contact **Lululla** for activation.
+
+---
+
+## Version 5.1.0.7 by Lululla – 2026-07-16
+
+### Fixed
+- **Fix: Color alpha fix** – RGB colors (#rrggbb) now correctly default to opaque (#ffrrggbb) instead of becoming transparent (#00rrggbb).
+- **Fix: Color parser** – added missing alpha handling in sColor constructor for 6-digit hex strings." + Environment.NewLine +
+- **Font scaling fix** – font conversion rules are now disabled by default to prevent double-scaling when converting skins (Enigma2 already handles font scaling). Users can enable them manually if needed.
+- **Font path normalization** – absolute font paths are now converted to relative paths (fonts/filename.ttf) when saving the skin.
+- **Duplicate removal** – duplicate font entries with the same name are skipped during sync to avoid conflicts.
 
 ---
 
