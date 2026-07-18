@@ -122,6 +122,8 @@ It includes a couple of new features i.e.:
 - **Splash screen** – added `fSplash` form with 800x600 background image (`splash.png` embedded as resource), version label (bottom-right), progress bar, status label, and file label.
 - **Startup flow** – modified `Program.cs` to show splash, update progress and file name during initialization, wait 2 seconds after completion, then close splash and launch `fMain`.
 
+### FIXED: 
+- **Fix: Alpha button** – inverted logic: now Alpha ON shows colors with transparency, Alpha OFF forces opaque(debug mode).
 
 ## 🔐 Premium License
 Some features require a premium license:
