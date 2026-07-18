@@ -1,7 +1,7 @@
 <h1 align="center">OpenSkin Designer</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/release-v5.1.0.8-blue" alt="Release">
+  <img src="https://img.shields.io/badge/release-v5.1.1.0-blue" alt="Release">
   <a href="https://dotnet.microsoft.com/">
     <img src="https://img.shields.io/badge/.NET-10.0-purple" alt=".NET 10">
   </a>
@@ -107,7 +107,36 @@ It includes a couple of new features i.e.:
 
 ### Changelog
 
-## CHANGELOG – OpenSkinDesigner (v5.1.0.8)
+## Version 5.1.1.0 by Lululla – 2026-07-18
+
+### Fixed
+
+- **License bypass** – enabling/disabling premium features on the fly. :P
+
+---
+
+## Version 5.1.0.9 by Lululla – 2026-07-18
+
+### Added
+
+- **Splash screen** – added `fSplash` form with 800x600 background image (`splash.png` embedded as resource), version label (bottom-right), progress bar, status label, and file label.
+- **Startup flow** – modified `Program.cs` to show splash, update progress and file name during initialization, wait 2 seconds after completion, then close splash and launch `fMain`.
+
+
+## 🔐 Premium License
+Some features require a premium license:
+- **Telnet Commands** – Execute commands on Enigma2 receiver
+- **Import/Export Skin** – Copy skin from/to Enigma2 (UNC)
+- **Skin Diagnostics** – Advanced analysis (premium only)
+- **Skin Converter** – Convert HD/FHD/WQHD/UHD
+- **Automatic Updates** – Check and download new versions
+
+Activate via `Tools → License`.  
+Contact **Lululla** for activation.
+
+---
+
+## Version 5.1.0.8 by Lululla – 2026-07-17
 
 ### FIXED: Font Manager – Duplicate Display & Saving Issues
 
@@ -174,18 +203,6 @@ It includes a couple of new features i.e.:
 - Use **Show Aliases** checkbox to see debug info
 - Add/Remove/Change fonts → works as expected
 - Close window → changes are saved automatically
-
-
-## 🔐 Premium License
-Some features require a premium license:
-- **Telnet Commands** – Execute commands on Enigma2 receiver
-- **Import/Export Skin** – Copy skin from/to Enigma2 (UNC)
-- **Skin Diagnostics** – Advanced analysis (premium only)
-- **Skin Converter** – Convert HD/FHD/WQHD/UHD
-- **Automatic Updates** – Check and download new versions
-
-Activate via `Tools → License`.  
-Contact **Lululla** for activation.
 
 ---
 
