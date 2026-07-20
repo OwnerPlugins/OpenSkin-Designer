@@ -107,6 +107,21 @@ It includes a couple of new features i.e.:
 
 ### Changelog
 
+## Version 5.1.1.1 by Lululla – 2026-07-20
+
+### Fixed
+- **Zoom system** – completely refactored: now `0` always means fit-to-view for any resolution. Trackbar and numeric control are properly synced (positive = zoom in, negative = zoom out).
+- **Crash** – fixed `NullReferenceException` in `PanelDesigner_Resize` that caused the app to close unexpectedly.
+- **Zoom controls** – now properly respond to user input.
+
+### Added
+- **Batch delete** – in `experimental` mode (checkboxes enabled), you can now check multiple nodes (screens, widgets, etc.) and delete them all with a single `Delete` click.
+- **Add Screen** – always creates the new screen at the root `<skin>` node, even if you are inside another screen or an include (with an informative message).
+
+### Changed
+- **Codebase** – all comments and source code are now in English for better maintainability and collaboration.
+---
+
 ## Version 5.1.1.0 by Lululla – 2026-07-18
 
 ### Fixed

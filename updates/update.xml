@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <item>
-    <version>5.1.1.0</version>
+    <version>5.1.1.1</version>
     <url>https://github.com/OwnerPlugins/OpenSkin-Designer/raw/refs/heads/master/updates/OpenSkinDesigner.zip</url>
     <changelog>https://github.com/OwnerPlugins/OpenSkin-Designer/releases</changelog>
     <mandatory>false</mandatory>
