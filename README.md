@@ -1,7 +1,7 @@
 <h1 align="center">OpenSkin Designer</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/release-v5.1.1.1-blue" alt="Release">
+  <img src="https://img.shields.io/badge/release-v5.1.1.2-blue" alt="Release">
   <a href="https://dotnet.microsoft.com/">
     <img src="https://img.shields.io/badge/.NET-10.0-purple" alt=".NET 10">
   </a>
@@ -106,6 +106,20 @@ It includes a couple of new features i.e.:
 </table>
 
 ### Changelog
+
+## Version 5.1.1.2 by Lululla – 2026-07-23
+
+### Added
+- **Add Enigma2** advanced conversion & extend sort functionality
+- **Adds four new conversion modules** Enigma2ImageScaler, Enigma2RuleFactory, Enigma2ValueScaler, and Enigma2XmlConverter.
+
+### Improved
+- **Implements Enigma2** advanced conversion rules with regex-based XML scaling and pre-calculated image scaling via optional checkbox in Skin Converter.
+- **Extends sort functionality to handle nodes** (screens in includes) and screen children (sorted by name).
+- **Refactors btnSortScreens to support three contexts** root skin, includes, and screen elements.
+
+---
+
 
 ## Version 5.1.1.1 by Lululla – 2026-07-20
 
