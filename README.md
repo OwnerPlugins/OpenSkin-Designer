@@ -1,7 +1,7 @@
 <h1 align="center">OpenSkin Designer</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/release-v5.1.1.2-blue" alt="Release">
+  <img src="https://img.shields.io/badge/release-v5.1.1.3-blue" alt="Release">
   <a href="https://dotnet.microsoft.com/">
     <img src="https://img.shields.io/badge/.NET-10.0-purple" alt=".NET 10">
   </a>
@@ -106,6 +106,15 @@ It includes a couple of new features i.e.:
 </table>
 
 ### Changelog
+
+## Version 5.1.1.3 by Lululla – 2026-07-24
+
+### Fixed
+- **Alpha button fix** – replaced Invalidate() with Refresh() to force immediate redraw after toggling alpha mode.
+- **Fading button fix** – added refresh() call to ensure the designer is properly redrawn when fading is toggled.
+- **Restored root-level** sort functionality; fixed include node renaming after sort; added confirmation dialogs for all sort operations (root, include, screen).
+
+---
 
 ## Version 5.1.1.2 by Lululla – 2026-07-23
 
