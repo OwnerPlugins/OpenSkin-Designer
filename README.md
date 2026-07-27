@@ -107,6 +107,15 @@ It includes a couple of new features i.e.:
 
 ### Changelog
 
+## Version 5.1.1.4 by Lululla – 2026-07-27
+
+### Fixed
+- **Pixmap path resolution** – absolute Linux paths (`/usr/...`, `/lib/...`, `/etc/...`) now search in `./skins/` and the current skin folder before falling back to fonts, fixing missing images in the designer.
+- **MapFontPath** – restored to original version to prevent duplicate method definitions and CS0136 conflicts.
+- **Variable naming** – fixed CS0136 conflicts in `cDataBase.getPath()` by using unique local variable names.
+
+---
+
 ## Version 5.1.1.3 by Lululla – 2026-07-24
 
 ### Fixed
