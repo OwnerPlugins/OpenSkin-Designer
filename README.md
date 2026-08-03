@@ -1,7 +1,7 @@
 <h1 align="center">OpenSkin Designer</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/release-v5.1.1.4-blue" alt="Release">
+  <img src="https://img.shields.io/badge/release-v5.1.1.5-blue" alt="Release">
   <a href="https://dotnet.microsoft.com/">
     <img src="https://img.shields.io/badge/.NET-10.0-purple" alt=".NET 10">
   </a>
@@ -107,6 +107,14 @@ It includes a couple of new features i.e.:
 
 ### Changelog
 
+## Version 5.1.1.5 by Lululla – 2026-08-03
+
+### Fixed
+- **Editor sync** – treeview now fully rebuilds after XML changes in Code tab, ensuring designer and root are properly updated.
+- **Include file editing** – treeview rebuilds after saving include files, preserving selection and expanding nodes.
+
+---
+
 ## Version 5.1.1.4 by Lululla – 2026-07-27
 
 ### Fixed
@@ -137,7 +145,6 @@ It includes a couple of new features i.e.:
 - **Refactors btnSortScreens to support three contexts** root skin, includes, and screen elements.
 
 ---
-
 
 ## Version 5.1.1.1 by Lululla – 2026-07-20
 
