@@ -1,7 +1,7 @@
 <h1 align="center">OpenSkin Designer</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/release-v5.1.1.5-blue" alt="Release">
+  <img src="https://img.shields.io/badge/release-v5.1.1.6-blue" alt="Release">
   <a href="https://dotnet.microsoft.com/">
     <img src="https://img.shields.io/badge/.NET-10.0-purple" alt=".NET 10">
   </a>
@@ -106,6 +106,17 @@ It includes a couple of new features i.e.:
 </table>
 
 ### Changelog
+
+## Version 5.1.1.6 by Lululla – 2026-08-04
+
+### Fixed
+
+- **Border paths** – added search in `./skins/skin_default/screens/` for border files (`b_*.png`), fixing missing border images.
+- **Background fallback** – added solid dark background when the background image is missing, with debug logging.
+- **Image loading** – `sGraphicImage` now gracefully handles missing or corrupt images without crashing the designer.
+- **Screen borders** – null or empty border names are now skipped before drawing, preventing rendering errors.
+
+---
 
 ## Version 5.1.1.5 by Lululla – 2026-08-03
 
